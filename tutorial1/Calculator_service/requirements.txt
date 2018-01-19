@@ -1,0 +1,4 @@
+setuptools
+Flask
+spyne==2.11
+lxml

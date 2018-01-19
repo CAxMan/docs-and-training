@@ -1,0 +1,4 @@
+#does not work, do not know why I cannot access the port 8000
+sudo docker build -t CalculatorService . && sudo docker run --network="host" -it CalculatorService
+
+sudo docker run -p 8000:8000 --network="host" -it CalculatorService
