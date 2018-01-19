@@ -21,4 +21,5 @@ EXPOSE 8000
 WORKDIR /app
 #ENTRYPOINT ["python"]
 #CMD ["CalculatorService.py"]
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["./runscript.sh"]
+#ENTRYPOINT ["/bin/bash"]
