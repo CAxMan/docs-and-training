@@ -1,6 +1,17 @@
 server {
 listen 8000;
 
+#location =  /sintefcalc/addition/\?wsdl {
+#proxy_pass http://localhost:5000;
+#proxy_set_header Host REMOTE_HOST ;
+#proxy_set_header X-Forwarded-Proto https;
+#proxy_set_header X-Forwarded-Protocol https;
+#sub_filter_types "*";
+#sub_filter_once off;
+##sub_filter 'http://' 'https://';
+#proxy_pass_request_headers on;
+#}
+
 location / {
 proxy_pass http://localhost:5000;
 proxy_set_header Host REMOTE_HOST ;
@@ -9,14 +20,6 @@ proxy_set_header X-Forwarded-Protocol https;
 proxy_pass_request_headers on;
 }
 
-location ~ \.?wsdl$ {
-proxy_pass http://localhost:5000;
-proxy_set_header Host REMOTE_HOST ;
-proxy_set_header X-Forwarded-Proto https;
-proxy_set_header X-Forwarded-Protocol https;
-sub_filter_types "*";
-sub_filter_once off;
-sub_filter 'http://' 'https://';
-proxy_pass_request_headers on;
-}
+
+
 }
