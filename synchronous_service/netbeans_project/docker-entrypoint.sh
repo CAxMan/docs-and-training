@@ -24,7 +24,7 @@ asadmin -u admin -W /tmp/glassfishpwd set server.admin-service.das-config.autode
 asadmin -u admin -W /tmp/glassfishpwd set-log-attributes com.sun.enterprise.server.logging.GFFileHandler.maxHistoryFiles=${MAX_LOG_FILES}
 
 # Deploy and stop the domain
-asadmin -u admin -W /tmp/glassfishpwd deploy /cfgtraining-syncservice.war
+asadmin -u admin -W /tmp/glassfishpwd deploy /ct-syncservice.war
 asadmin -u admin -W /tmp/glassfishpwd stop-domain
 rm /tmp/glassfishpwd
 

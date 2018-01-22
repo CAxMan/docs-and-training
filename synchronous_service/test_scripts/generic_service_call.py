@@ -3,16 +3,17 @@
 """Provides a Python interface to a hosted webservice."""
 
 import sys
-#import suds
-#from suds.cache import NoCache
+import suds
+from suds.cache import NoCache
+from suds.client import Client
 import logging
 logging.basicConfig(level=logging.INFO)
 logging.getLogger('suds.client').setLevel(logging.INFO)
 
 # Add your deployment URL here
 wsdl_urls = {
-        'deployed': "https://api.hetcomp.org/cfgtraining_syncservice",
-        'local':"http://localhost:8080/cfgtraining_syncservice",
+        'deployed': "https://api.hetcomp.org/ct-syncservice",
+        'local':"http://localhost:8080/ct-syncservice",
         }
 
 # Add your webmethod definitions here
@@ -43,11 +44,10 @@ def call(methodname, service, argnames, argv):
 
     wsdlLocation = get_wsdl_url(service, argv[n_cmdargs_wanted-1])
 
-    #client = suds.client.Client(wsdlLocation, cache=NoCache())
-    #method = eval('client.service.' + methodname)
-    #response = method(*args)
-    #return response
-    return "Call executed"
+    client = Client(wsdlLocation, cache=NoCache())
+    method = eval('client.service.' + methodname)
+    response = method(*args)
+    return response
 
 
 def print_all_webmethods():
