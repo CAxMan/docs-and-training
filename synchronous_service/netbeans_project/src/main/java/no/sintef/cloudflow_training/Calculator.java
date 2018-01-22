@@ -1,16 +1,11 @@
 package no.sintef.cloudflow_training;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import javax.xml.bind.DatatypeConverter;
 import javax.xml.ws.Holder;
 
 /**
