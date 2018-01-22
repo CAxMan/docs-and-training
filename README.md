@@ -68,19 +68,20 @@ simple example services which you will build and modify.
 
    Therefore, first edit `Dockerfile` and change line number 3 to the following:
    ```
-   COPY target/cloudflow_training-1.0-SNAPSHOT.war /cfgtraining-syncservice-<newname>.war
+   COPY target/cloudflow_training-1.0-SNAPSHOT.war /ct-sync-<newname>.war
    ```
-   Replace `<newname>` with a unique identifier, for example your username. Make sure
-   _not_ to use underscores in this name, as they will later interfere with the
-   Amazon Web Services tools.
+   Replace `<newname>` with a unique identifier, for example your username.
+   Make sure _not_ to use underscores or capital letters in this name, as they
+   will later interfere with the Amazon Web Services tools. Also choose a name
+   as short as possible, since Amazon also imposes restrictions on that.
 
 
    Then, edit `docker-entrypoint.sh` and similarly change line 27 to:
    ```
-   asadmin -u admin -W /tmp/glassfishpwd deploy /cfgtraining-syncservice-<newname>.war
+   asadmin -u admin -W /tmp/glassfishpwd deploy /ct-sync-<newname>.war
    ```
 
-   From now on, the full `cfgtraining-syncservice-<newname>` text will be 
+   From now on, the full `ct-syncservice-<newname>` text will be 
    referred to as the `<servicename>` of your service.
 
 4. Now, build the Docker image:
@@ -125,7 +126,7 @@ simple example services which you will build and modify.
 
    In the `test_scripts` directory, run:
    ```
-   python generic_service_call.py add 20 22 local
+   python3 generic_service_call.py add 20 22 local
    ```
    This will call your web service with the numbers 20 and 22 as input and
    print the result. `local` indicates that we are testing the locally
@@ -133,6 +134,9 @@ simple example services which you will build and modify.
 
    You can run `python generic_service_call.py` without further parameters
    to see all available methods (currently that is only one).
+
+   In the SSH window where the Docker container is running, you will see
+   log events of the test calls.
 
 8. Stop the local Docker container
 
@@ -148,7 +152,7 @@ These are the deployment scripts. The scripts will enable you to create a new
 service on the CloudFlow platform, update it with new revisions of your Docker
 image, and obtain status and log information.
 
-Note: Please read the following steps completely before executing them.
+Note: Please read each of the following steps completely before executing them.
 
 1. To create a new service, run the following:
    ```
@@ -164,12 +168,13 @@ Note: Please read the following steps completely before executing them.
    will then listen under a different route than the one the load balancer is
    routing.
    
-   `<healtch_check_path>` is what the load balancer will query to check if the
+   `<health_check_path>` is what the load balancer will query to check if the
    service is alive. It should be an address that returns a html 200 code, so
    preferrably the wsdl. The complete query path will b
    `https://srv.hetcomp.org/<servicename>/<health_check_path>`. In this
-   tutorial, `health_check_path>` should be `INCOMPLETE`, which is the name of
-   the Java class representing the service.
+   tutorial, `health_check_path>` should be `"Calculator?wsdl"` (include the
+   quotation marks), which is the name of the Java class representing the
+   service.
 
    Important: Run this script exactly once per service! Running this script
    will _not_ make the service available yet, so don't wonder if the URL given
@@ -183,14 +188,17 @@ Note: Please read the following steps completely before executing them.
    and create or update an Amazon task definition and service. The service will
    then automatically spawn container instances on free VM resources.
 
-   # `<servicename>` is the same name as before
-   # `<docker_source_folder>`: _absolute_ path to the folder containing the
+   * `<servicename>` is the same name as before
+   * `<docker_source_folder>`: _absolute_ path to the folder containing the
      Dockerfile
-   # `<container_port>`: The port the container listens on. For glassfish,
+   * `<container_port>`: The port the container listens on. For glassfish,
      that's 8080, and it's the same as the second half of the `-p` port mapping
      in the manual docker run in tutorial 1.
-   # ´<env_filepath>` is the path to the file to read environment variables
+   * ´<env_filepath>` is the path to the file to read environment variables
      from (= `env_template` from the manual run in part 1).
+
+   Deploying the service might take a while, especially for the first time, as
+   the Docker image needs to be uploaded to its repository.
 
    Note: To update an already running service with a new version of the Docker
    image, simply run the exact same command.
@@ -200,11 +208,13 @@ Note: Please read the following steps completely before executing them.
    $ ./service_get_status.py <servicename>
    ```
    This reports the status of all targets and shows events like container
-   spawns etc.
+   spawns etc. Run the script repeatedly to see how the status is changing. 
+   It might take a few minutes until the service becomes healthy.
 
-   Run `./service_get_status.py simple-example` to see how it should look like
-   for a healthy service. (`simple-example` is already running on the CloudFlow
-   platform.) Look out especially for the _health state_ of the service.
+   You can run un `./service_get_status.py ct-sync` to see how it should look
+   like for a healthy service. (`ct-sync` is the same calculator service
+   already running on the CloudFlow platform.) Look out especially for the
+   _health state_ of the service.
 
 5. To get log output from the service itself (such as what requests it processed
    and what the results were), run
@@ -215,3 +225,13 @@ Note: Please read the following steps completely before executing them.
    Health Checker which result in the html return code 200. For comparison, you
    can again run `./service_get_logs.py simple-example`.
 
+6. Test the deployed service
+
+   You can now use the same test script as you used in tutorial 1 (step 7), but
+   this time use the `deployed` indicator to make calls to your freshly deployed
+   service.
+
+   In the `test_scripts` directory, run:
+   ```
+   python3 generic_service_call.py add 20 22 deployed
+   ```
