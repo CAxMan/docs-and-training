@@ -95,14 +95,14 @@ simple example services which you will build and modify.
    ```
    $ docker run -p 8080:8080 --env-file=env_template <servicename>
    ```
-   # The `-p` parameter maps ports from the host (= the training VM) to the
+   * The `-p` parameter maps ports from the host (= the training VM) to the
      container instance. In this case, it is port 8080, which is the port
      glassfish (the Java application server contained in the Docker image) is
      using for incoming traffic.
-   # `env_template` is a file containing definitions of environment variables.
+   * `env_template` is a file containing definitions of environment variables.
      These variables are used to configure the container instance without having
      to edit and re-build the Docker image.
-   # Replace `<servicename>` with the name you chose in step 4.
+   * Replace `<servicename>` with the name you chose in step 4.
 
 6. Test if the service is available
 
