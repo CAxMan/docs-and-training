@@ -12,8 +12,8 @@ logging.getLogger('suds.client').setLevel(logging.INFO)
 
 # Add your deployment URL here
 wsdl_urls = {
-        'deployed': "https://api.hetcomp.org/ct-syncservice",
-        'local':"http://localhost:8080/ct-syncservice",
+        'deployed': "https://srv.hetcomp.org/ct-sync",
+        'local':"http://localhost:8080/ct-sync",
         }
 
 # Add your webmethod definitions here
