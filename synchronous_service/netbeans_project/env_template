@@ -1,0 +1,5 @@
+# Set to true to enable more verbose logging
+DEBUG_MODE=true
+
+# Limit the amount of log files to be kept
+MAX_LOG_FILES=10
