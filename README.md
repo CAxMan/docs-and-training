@@ -43,23 +43,52 @@ Note: In this training session, "locally" actually means inside the training
 VM. Log into the training VM with your SSH client now. We have created some
 simple example services which you will build and modify.
 
-1. INCOMPLETE Enter the tutorial directory
+1. Enter the tutorial directory by typing:
+   ```
+   $ cd CloudiFacturingTraining/synchronous_service/netbeans_project
+   ```
 
-2. INCOMPLETE Compile the Java source code
+2. Compile the Java source code using maven (`mvn` on the command line), the
+   Java build tool:
+   ```
+   $ mvn package
+   ```
+   This will create the folder `./target` and the file
+   `cloudflow_training_-1.0-SNAPSHOT.war` inside it. This .war file contains 
+   the compiled application, and it is this file we will deploy inside a
+   Docker container.
 
-3. INCOMPLETE Edit Dockerfile and docker-entrypoint.sh and change the target
-   name
+3. Edit Dockerfile and docker-entrypoint.sh and change the target name
 
-   The name of the war file _inisde the container_ will determine the URL path
-   under which the service is available. Choose a simple name without
-   underscores, dashes are ok.
+   The name of the .war file _inisde the container_ will determine the URL path
+   under which the service is available. (It will be, in the end, 
+   `https://srv.hetcomp.org/<war-file-name>/...`.) To avoid conflicting service
+   names (everyone in the training session starts with the same files), we need
+   to rename this file.
+
+   Therefore, first edit `Dockerfile` and change line number 3 to the following:
+   ```
+   COPY target/cloudflow_training-1.0-SNAPSHOT.war /cfgtraining-syncservice-<newname>.war
+   ```
+   Replace `<newname>` with a unique identifier, for example your username. Make sure
+   _not_ to use underscores in this name, as they will later interfere with the
+   Amazon Web Services tools.
+
+
+   Then, edit `docker-entrypoint.sh` and similarly change line 27 to:
+   ```
+   asadmin -u admin -W /tmp/glassfishpwd deploy /cfgtraining-syncservice-<newname>.war
+   ```
+
+   From now on, the full `cfgtraining-syncservice-<newname>` text will be 
+   referred to as the `<servicename>` of your service.
 
 4. Now, build the Docker image:
    ```
    $ docker build -t <servicename> .
    ```
    This creates a Docker image and stores it locally.
-   `<servicename>` should be the same name as chosen in the previous step.
+   `<servicename>` should be the same full name as chosen in the previous step.
 
 5. Run the Docker image as a local container
    ```
@@ -75,16 +104,38 @@ simple example services which you will build and modify.
    # Replace `<servicename>` with the name you chose in step 4.
 
 6. Test if the service is available
+
    To test if the now running Docker container is available, open a second SSH
    connection to the training VM. There, run:
    ```
-   $ curl localhost:8080/<servicename>/INCOMPLETE?wsdl
+   $ curl localhost:8080/<servicename>/Calculator?wsdl
    ```
    This asks the service for its wsdl (web service description language) file,
    which contains a formal definition of all the methods the service offers.
    You should see an XML file being printed in the console output.
 
-7. Stop the local Docker container
+7. Make some test calls to your service
+   
+   The example service is a simple Calculator service which so far hosts 
+   exactly one method: `add` which takes two numbers and returns their sum.
+   To test this method, navigate to the `synchronous_service/test_scripts`
+   directory. There, a pre-made test script`generic_service_call.py` is
+   already available. Edit this file and change lines 14 and 15 again such that
+   they contain your full service name. (Compare step 3 of tutorial 1.)
+
+   In the `test_scripts` directory, run:
+   ```
+   python generic_service_call.py add 20 22 local
+   ```
+   This will call your web service with the numbers 20 and 22 as input and
+   print the result. `local` indicates that we are testing the locally
+   deployed service.
+
+   You can run `python generic_service_call.py` without further parameters
+   to see all available methods (currently that is only one).
+
+8. Stop the local Docker container
+
    If the above steps worked fine, it is time to deploy the service on the
    CloudFlow platfrom. Therefore, switch to your first SSH window and press
    `Ctrl-C` to stop the running Docker container. Then, proceed to the second
@@ -115,7 +166,7 @@ Note: Please read the following steps completely before executing them.
    
    `<healtch_check_path>` is what the load balancer will query to check if the
    service is alive. It should be an address that returns a html 200 code, so
-   preferrably the wsdl. The complete query path will be
+   preferrably the wsdl. The complete query path will b
    `https://srv.hetcomp.org/<servicename>/<health_check_path>`. In this
    tutorial, `health_check_path>` should be `INCOMPLETE`, which is the name of
    the Java class representing the service.
