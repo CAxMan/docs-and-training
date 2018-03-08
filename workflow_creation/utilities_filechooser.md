@@ -37,7 +37,7 @@ The complete set of parameters is explained in the following table:
 | `description` | no | base64-encoded informative description to be shown above the buttons in the web GUI. Can use html code and CSS styling. |
 | `header_base64` | no | base64-encoded text to be printed above the description in the web GUI. Can use html code and CSS styling. Default is `<h1>Select a file</h1>`|
 | `buttonText` | no | Plain-text string (no base64 encoding!) to be used for the "Select file" button. Default is "Select file". |
-| `filter`| no | Filter for the tree view in the web GUI. Can be either `"folder"` to display and select only folder, `"folderWithFiles"` to display everything but allow only folder selection, or a semicolon-separated list of accepted file extensions, such as `.stp;.g2` |
+| `filter`| no | Filter for the tree view in the web GUI. Can be either `"folder"` to display and select only folder, `"folderWithFiles"` to display everything but allow only folder selection, or a semicolon-separated list of accepted file extensions (case sensitive!), such as `.stp;.g2`. |
 | `gssToken` | no | Token different from session token to be used to contact external storages. Currently _not_ in use. |
 
 
