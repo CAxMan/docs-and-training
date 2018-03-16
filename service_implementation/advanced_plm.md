@@ -192,7 +192,19 @@ When folder is not needed, the one can be deleted with all its content.
 
 ### Folder version
 
-...
+Folder may have multiple versions with different version tags.
+Each version may have same or different children folders. The same or different files may be attached to folder versions.
+
+Let's assume **V_pbs** was already created before. and it has at least one folder.
+
+```Java
+V_pbs pbs = ...
+V_node[] list = simDmService.node_list(sessionID, pbs.getNodus().getNodes());
+V_node node = list[0];
+
+long nodeId = pbs.getNodus().getNodes()[0];
+V_node version = simDmService.node_create_version(sessionID, nodeId, "v. 2", true, true, true, true, false, true, false, false, false, null, null, null);
+```
 
 ### Handle files
 
