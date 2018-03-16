@@ -6,10 +6,64 @@ PLM server has its own implementation of GSS services. GSS has SOAP and REST ser
 WSDL (SOAP): https://caxman.clesgo.net/jotne/GSS/FileWebService?wsdl
 REST end point: https://caxman.clesgo.net/jotne/GSS/resources/plm
 
+GSS covers is small subset of simplified methods (services) of PLM server.
+
 Java (Maven) client: https://github.com/CAxMan/PlmGSS-samples
 
 PLM server is also accessible via GSS implementation by SINTEF.
 Code samples: https://github.com/CAxMan/infrastructureClients/tree/master/gssClients
+
+PLM has some extra methods (SOAP) exposed via GSS
+- *createFolderVersion*
+- *listFolderVersions*
+- *listFileVersions*
+- *plm2gss*
+- *gss2plm*
+
+**createFolderVersion** - creates new version of a specifies folder. Children folders are reused. Files are copied.
+Parameters:
+- **folderID** - GSS folder id of a folder to create new version from. Example: plm://InitialRepository/Ultralight_Glider/236223201541
+- **session_id** - Keystone authentication token
+Returns: **ResourceInformation** object with GSS folder ID of just create folder version
+
+**listFolderVersions** - lists all versions of a specified folder including the one specified
+Parameters:
+- **path** - GSS folder id. Example: plm://InitialRepository/Ultralight_Glider/236223201541
+- **session_id** - Keystone authentication token
+Returns: **ResourceInformation** object for each folder version
+
+**listFileVersions** - lists all versions of a specified folder including the one specified
+Parameters:
+- **path** - GSS file id. Example: plm://InitialRepository/Ultralight_Glider/236223201541
+- **session_id** - Keystone authentication token
+Returns: **ResourceInformation** object for each file version
+
+Following two methods can be used to switch between GSS and PLM native services.
+GSS uses object identifiers like the following.
+"plm://TestRepository/MyModel123/1234567890"
+where last part (integer value) is PLM identifier.
+
+**plm2gss** - converts PLM object identifier to GSS identifier
+
+Example:
+```Java
+String keystoneToken = ...
+V_node node = ...
+ResourceInformation folderId = srv.plm2Gss(node.getNodus().getItem().getInstance_id(), keystoneToken);
+String id = folderId.getUniqueName();
+```
+
+**gss2plm** - converts GSS identifier to PLM object identifier
+
+Example:
+```Java
+String keystoneToken = ...
+FileWebService_PortType srv = new FileWebService_ServiceLocator().getFileWebServicePort();
+PlmResource plmId = srv.gss2Plm("plm://TestRepository/MyModel123/1234567890", keystoneToken);
+
+String wsdl = plmId.getWsdlUrl();
+String serviceUrl = plmId.getServiceUrl();
+```
 
 ## Native services (SOAP)
 
