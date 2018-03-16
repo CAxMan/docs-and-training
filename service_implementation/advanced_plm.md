@@ -156,7 +156,39 @@ Just created V_pbs object will have one single person (**V_person**) that repres
 
 ### Folder
 
-...
+Product structure can be considered as folder structure.
+Let's assume **V_pbs** was already created before. But we do not have the object yet.
+First folder should be connected to **V_pbs** object.
+
+```Java
+V_pbs pbsTop = simDmService.pbs_get(sessionID, null);
+
+V_item item = new V_item();
+item.setName("folder name");
+item.setItem_type("DESIGN"); // can be one from list: simDmService.node_list_types(sessionID, 0 /* the value is not used */);
+item.setDescription("description text");
+item.setIntroduced("");
+item.setLast_changed("");
+item.setPreview("");
+
+V_nodus nodus = new V_nodus();
+nodus.setItem(item);
+nodus.setVersion("1");
+
+V_node node = new V_node();
+node.setNodus(nodus);
+node.setId("global unique identifier");
+node.setRealization("");
+
+long parent = pbsTop.getNodus().getItem().getInstance_id();
+node = simDmService.node_create(sessionID, node, new long[]{ parent });
+```
+
+Second folder can be created as child of first folder.
+Folder (node) may have multiple parents. And that is first difference from normal folder structure.
+
+Folder may have multiple children folders and files (**V_attached_file**).
+When folder is not needed, the one can be deleted with all its content.
 
 ### Folder version
 
