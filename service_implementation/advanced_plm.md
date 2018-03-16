@@ -142,4 +142,30 @@ pbsTop = simDmService.pbs_create(sessionID, pbsTop); // pbsTop will obtain addit
 
 Just created V_pbs object will have one single person (**V_person**) that represents PLM user who performed **pbs_create** execution.
 
-### Create folder
+### Persons
+
+...
+
+### Properties
+
+...
+
+### Approvals
+
+...
+
+### Folder
+
+...
+
+### Folder version
+
+...
+
+### Handle files
+
+...
+
+### Assign property value
+
+...
