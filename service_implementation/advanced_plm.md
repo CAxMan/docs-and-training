@@ -196,17 +196,47 @@ pbsTop = simDmService.pbs_create(sessionID, pbsTop); // pbsTop will obtain addit
 
 Just created V_pbs object will have one single person (**V_person**) that represents PLM user who performed **pbs_create** execution.
 
-### Persons
-
-...
-
 ### Properties
 
-...
+Product structure may have user defined properties. And values can be assigned to folders.
+Property (property definition) reside in **V_pbs** object.
 
-### Approvals
+Available property (definitions) can be retrieved in the following way
 
-...
+```Java
+V_pbs pbsTop = ...
+V_property[] properties = simDmService.property_list(sessionID, pbsTop.getProperties());
+```
+
+Property (definition) can be created.
+
+```Java
+V_item item = new V_item();
+item.setItem_type("DOUBLE_PROPERTY"); // possible values can be got from here: simDmService.property_list_types(sessionID);
+item.setName("direction");
+item.setDescription("...");
+
+V_property property = new V_property();
+property.setItem(item);
+// folders of what types can have property assignment
+property.setApplicable_to(new String[] {"", ""}); // possible values can be got from here: simDmService.node_list_types(sessionID, 0); 
+property.setDefault_value(null); // should be set for mandatory properties
+// the property describes 3d vector
+property.setHigh_dimension(3);
+property.setLow_dimension(3);
+property.setMandatory(false); // optional property.
+property.setScalar(false); // property describes vector value
+property.setUnits(null);
+property = simDmService.property_create(sessionID, property);
+```
+
+Property definition can be updated or deleted
+
+- property_update
+- property_cancel
+
+Note, property (definition) can be deleted completely from product structure only if there is no any assignment to any folder.
+Otherwise property will be market as "cancelled". And there will not be possible to make new assignments.
 
 ### Folder
 
