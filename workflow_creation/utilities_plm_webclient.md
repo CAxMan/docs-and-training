@@ -1,6 +1,66 @@
 # Using the PLM web client
 
-## List of models
+## Introduction
+
+This guide is written for CAxMan application and tools developers to assist them how to use PLM concepts in their workflows.
+
+## Why use PLM
+
+PLM provides, in a product-structure-based way, management of system, product and project data. Management of data means, among others, controlled sharing and integration of data as they emerge during a system/product/project life-cycle, and long-term archiving. Such data shall be exposed through a PLM Server to other users. Besides the data themselves, also meta data are made available that describe who created or modified the data, when, how and for what purpose. Also version and configuration data are such meta data.
+The remainder of this document refers to these three types of data, system, product and project data, as just “product data”.
+
+### Configuration control
+
+The PLM Server enables configuration control of the different versions of a product structure and of the data related to it. For this, the PLM Server provides, among others, the following functionality:
+- Create folder versions
+- Create baselines
+- Create folder versions of folders belonging to a baseline
+- Copy a folder version to another parent
+- Assign editors and readers to folder versions
+- Link versions of different folders to one another
+- Remove folder versions.
+
+### Persistence and traceability
+
+PLM data is always related to the product structure tree, and is presented in such a tree structure.
+
+<p align="center">
+  <img src="img_plm/product_structure_tree.png"
+   alt="Example of a product structure tree" />
+</p>
+
+The PLM Server allows you to store - in such tree - product data that are in parameters or that are in files, including documents, software, manuals, structured documents like STEP, etc.
+Versioning of folders in the product structure allows the history of the product data to be tracked throughout the development of the product.
+
+### Export and archival
+
+Data in the PLM Server will represent a rather comprehensive product description after having been collected over a period of time. For products with a long lifetime it is worthwhile to archive this data set. The PLM Server offers archiving capabilities in a standard representation (ISO 10303-209) for long term storage.
+
+## Roles of PLM in CAxMan workflows
+
+PLM functionality is available in CAxMan – and else – as web-services and through a web-client.
+The web-client user’s guide is in [User guide PLM client](./utilities_plm_webclient.md#user-guide-plm-client). The PLM web-client can act as a service within a CAxMan workflow to hand-over files to subsequent services. The invocation of the web-client as part of a CAxMan workflow is described in this document.
+
+Access to the PLM Server via web-services is twofold:
+1.	[Via GSS](../service_implementation/advanced_plm.md#gss).
+1.	[Via EDMopenSimDM native web-services](../service_implementation/advanced_plm.md#native-services--soap-).
+
+These two types of services give you access to, among others, the following functions:
+- Creation and management of version-controlled files and folders.
+- Storage of product data in a user-defined folder structure that may reflect the life-cycle stages of the product.
+- Access control for users and applications, particularly for applications operating within workflows.
+- Approval of version-controlled information.
+- Versioning of folders.
+- Storage of parameter values in folders.
+- Storage of feedback comments in folders.
+- Approval of folder versions.
+
+## User guide PLM client
+
+PLM web client can be directly accessible via following URL:
+https://caxman.clesgo.net/jotne/STM_web/
+
+### List of models
 
 If PLM web client is launched via workflow, no extra sign-in is required. Workflow passes session token to PLM web client.
 When PLM client starts the list of available repositories and models are presented in the left side panel. An example of available product structures is shown below.
@@ -18,7 +78,7 @@ Click icon <img src="img_plm/open_icon.png" /> near to the model name of your in
    alt="Context menu to open model" />
 </p>
 
-## Product structure and meta-data
+### Product structure and meta-data
 
 The product structure of a model will be shown on the left side of the web page where repositories and projects were listed before.
 Panel with repositories and models is collapsed to left side. But it can be shown again to switch to other product structure.
@@ -44,7 +104,7 @@ Product structure folders may have assigned user-defined property values.
    alt="Assigned properties" />
 </p>
 
-## File upload
+### File upload
 
 Files can be uploaded to a server and attached to a selected folder.
 Click <img src="img_plm/open_icon.png" /> icon of your favorite node and select the "Add file" menu item from the context menu.
@@ -58,12 +118,12 @@ The following form will be shown.
 A file is selected by clicking the "Browse..." button. Select file type from the "Type" drop-down list. The description of the file is mandatory.
 Click "OK" to start upload. After a while the uploaded file will appear in the "Files" tab.
 
-## Export ZIP package
+### Export ZIP package
 
 The content of a folder and all children below including their documents can be exported as a ZIP package.
 Click <img src="img_plm/open_icon.png" /> icon of a required node and select the "Download" menu item from the context menu.
 
-## Add remark
+### Add remark
 
 A folder can be commented, that is, a new remark may be added.
 Click   icon of a folder and then select the "Add remark" menu item from the context menu.
@@ -75,7 +135,7 @@ Click   icon of a folder and then select the "Add remark" menu item from the con
 
 Give the subject for your remark and the remark itself. Then click "OK".
 
-## Add approval
+### Add approval
 
 A folder and all its underlying content can be approved (disapproved) by adding an approval tag to the folder.
 Click <img src="img_plm/open_icon.png" /> icon of a folder and then select the "Add approval" menu item from the context menu.
@@ -88,7 +148,7 @@ Click <img src="img_plm/open_icon.png" /> icon of a folder and then select the "
 Select the resolution type (approved, rejected or not applicable) and add a description.
 Then click "OK".
 
-## Import folder (ZIP package)
+### Import folder (ZIP package)
 
 A local folder and all its content (including sub folders) can be imported to a selected node. This, however, requires that the local folder has been zipped first.
 Click <img src="img_plm/open_icon.png" /> icon of a node and then select the "Import folder" menu item from the context menu.
@@ -101,7 +161,7 @@ Click <img src="img_plm/open_icon.png" /> icon of a node and then select the "Im
 Select "Folders type" item. All imported folder will be assigned this type.
 "Files types" may be empty. In this case the system will set the file type (for each file) according to the individual file extension.
 
-## Delete folder
+### Delete folder
 
 A folder can be deleted. That is, it can be removed from the product structure.
 Click <img src="img_plm/open_icon.png" /> icon of a node and then select the "Delete" menu item from the context menu.
