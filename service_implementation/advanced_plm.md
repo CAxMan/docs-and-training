@@ -219,7 +219,7 @@ item.setDescription("...");
 V_property property = new V_property();
 property.setItem(item);
 // folders of what types can have property assignment
-property.setApplicable_to(new String[] {"", ""}); // possible values can be got from here: simDmService.node_list_types(sessionID, 0); 
+property.setApplicable_to(new String[] {"ANALYSIS", "DESIGN"}); // possible values can be got from here: simDmService.node_list_types(sessionID, 0); 
 property.setDefault_value(null); // should be set for mandatory properties
 // the property describes 3d vector
 property.setHigh_dimension(3);
