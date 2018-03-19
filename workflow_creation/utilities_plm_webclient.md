@@ -39,21 +39,21 @@ Data in the PLM Server will represent a rather comprehensive product description
 ## Roles of PLM in CAxMan workflows
 
 PLM functionality is available in CAxMan – and else – as web-services and through a web-client.
-The web-client user’s guide is in [User guide PLM client](./utilities_plm_webclient.md#user-guide-plm-client). The PLM web-client can act as a service within a CAxMan workflow to hand-over files to subsequent services. The invocation of the web-client as part of a CAxMan workflow is described in this document.
+The web-client user’s guide is in [User guide PLM client](./utilities_plm_webclient.md#user-guide-plm-client). The PLM web-client can act as a service within a CAxMan workflow to hand-over files to subsequent services. The invocation of the web-client as part of a CAxMan workflow is described in [this document](./utilities_plm_webclient.md#integrating-the-plm-web-client-in-a-workflow).
 
 Access to the PLM Server via web-services is twofold:
 1.	[Via GSS](../service_implementation/advanced_plm.md#gss).
 1.	[Via EDMopenSimDM native web-services](../service_implementation/advanced_plm.md#native-services--soap-).
 
 These two types of services give you access to, among others, the following functions:
-- Creation and management of version-controlled files and folders.
-- Storage of product data in a user-defined folder structure that may reflect the life-cycle stages of the product.
-- Access control for users and applications, particularly for applications operating within workflows.
-- Approval of version-controlled information.
-- Versioning of folders.
-- Storage of parameter values in folders.
-- Storage of feedback comments in folders.
-- Approval of folder versions.
+- Creation and management of version-controlled files and folders. (partially in GSS)
+- Storage of product data in a user-defined folder structure that may reflect the life-cycle stages of the product. (file upload in GSS)
+- Access control for users and applications, particularly for applications operating within workflows. (Native)
+- Approval of version-controlled information. (Native)
+- Versioning of folders. (GSS)
+- Storage of parameter values in folders. (Native)
+- Storage of feedback comments in folders. (Native)
+- Approval of folder versions. (Native)
 
 ## User guide PLM client
 
@@ -171,21 +171,7 @@ Click <img src="img_plm/open_icon.png" /> icon of a node and then select the "De
    alt="Delete confirmation in Mozilla Firefox" />
 </p>
 
-# File selection using the PLM web client
-Workflows in CAxMan typically communicate with one of the provided cloud
-storages. The interactions towards the files themselves are typically handled
-through GSS (Generic Storage Services), but this requires that the services
-already know where a file is stored or, alternatively, which folder it should
-upload a file into. In order to provide a user friendly way to pick files and
-folders that will be used in a workflow, the PLM web client can be used.
-
-The PLM web client is meant to be used as a step in
-CAxMan workflows, serving as a GUI towards the PLM storage solution offered
-in the project. It also provides a user-friendly and natural way to obtain
-unique GSS names which can be used as input to other services later in the
-workflow chain.
-
-## Integrating the PLM web client in a workflow
+# Integrating the PLM web client in a workflow
 The displayHtml service is currently registered under the following URI:
 ```
 http://www.caxman.eu/apps/jotne/IframeDisplay.owl#displayHtml_Service
@@ -209,7 +195,19 @@ The complete set of parameters is explained in the following table:
 | `pageTitle` | yes | Textual caption in web browser |
 | `url` | yes | URL to PLM web client. Normally it is "https://caxman.clesgo.net/jotne/STM_web/" |
 
-## PLM web client as file chooser
+# File selection using the PLM web client
+Workflows in CAxMan typically communicate with one of the provided cloud
+storages. The interactions towards the files themselves are typically handled
+through GSS (Generic Storage Services), but this requires that the services
+already know where a file is stored or, alternatively, which folder it should
+upload a file into. In order to provide a user friendly way to pick files and
+folders that will be used in a workflow, the PLM web client can be used.
+
+The PLM web client is meant to be used as a step in
+CAxMan workflows, serving as a GUI towards the PLM storage solution offered
+in the project. It also provides a user-friendly and natural way to obtain
+unique GSS names which can be used as input to other services later in the
+workflow chain.
 
 Click icon <img src="img_plm/open_icon.png" /> near to the file name of your interest, and context menu will appear.
 
