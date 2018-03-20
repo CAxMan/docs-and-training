@@ -60,6 +60,12 @@ These two types of services give you access to, among others, the following func
 PLM web client can be directly accessible via following URL:
 https://caxman.clesgo.net/jotne/STM_web/
 
+In case of direct access (not via workdlow) login dialog is shown.
+User will need to provide user name and password.
+User name is equal to one for the portal. And Password is different.
+PLM password is generated for each database user when user is registered.
+If you do not know (do not remember) your password, please ask either Alexey Zorin (Alexey.Zorin@jotne.com) or Jotne support (helpdesk@jotne.com).
+
 ### List of models
 
 If PLM web client is launched via workflow, no extra sign-in is required. Workflow passes session token to PLM web client.
