@@ -201,6 +201,13 @@ The complete set of parameters is explained in the following table:
 | `pageTitle` | yes | Textual caption in web browser |
 | `url` | yes | URL to PLM web client. Normally it is "https://caxman.clesgo.net/jotne/STM_web/" |
 
+The output values are explained in the following table:
+
+| Output | Description |
+| -------------- | ----------- |
+| `selectedFile_base64` | The session token used for authentication. Should be connected to the workflow input with the same name |
+| `status_base64` | the same as sessionToken |
+
 # File selection using the PLM web client
 Workflows in CAxMan typically communicate with one of the provided cloud
 storages. The interactions towards the files themselves are typically handled
