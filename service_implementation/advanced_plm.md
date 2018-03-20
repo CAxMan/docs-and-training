@@ -296,6 +296,90 @@ New folder version will have copy of all files.
 ### Handle files
 
 Folder (version) may have multiple files attached.
+File can be attached to a specified folder as a sequence of few methods.
+Let's suppose we have file named "ULG_Coarse.stp" somewhere in a local folder.
+
+```Java
+V_item item = new V_item();
+item.setName("ULG_Coarse"); // without file extension
+item.setItem_type(""); // item type can be evaluated by PLM server after content is uploaded.
+item.setDescription("");
+item.setIntroduced("");
+item.setLast_changed("");
+item.setPreview("");
+
+V_file fileSpec = new V_file();
+fileSpec.setItem(item);
+fileSpec.setExtension(".stp"); // file extension
+fileSpec.set_interface("Interface specifications"/* any human readable text */);
+fileSpec.setOriginal_name("absolute path to ULG_Coarse.stp");
+fileSpec.setOriginal_format("file format name"); // can be derived from file name by using System API
+fileSpec.setOS("Microsoft Windows"/* any text */);
+fileSpec.setProduced_by("EPM Thechnology AS");
+fileSpec.setSize(0); // size will be evaluated on server
+fileSpec.setOwner(0); // organization id
+fileSpec.setCheck_sum("");
+fileSpec.setLink("");
+fileSpec.setExpress_schema("");
+fileSpec.setModel_name("");
+
+fileSpec = simDmService.file_create(sessionID, fileSpec);
+```
+
+Consider **V_file** object as file storage in PLM database.
+
+```Java
+V_node node = ...
+V_file fileSpec = ...
+
+V_attached_file attachedFile = new V_attached_file();
+V_item item = new V_item();
+item.setItem_type("");
+item.setDescription("");
+item.setIntroduced("");
+item.setLast_changed("");
+item.setPreview("");
+item.setName("ULG_Coarse.stp"); // file name
+item.setDescription("description must be here");
+attachedFile.setItem(item);
+attachedFile.setDomain(node.getItem().getInstance_id());
+attachedFile.setFile(fileSpec.getItem().getInstance_id());
+
+attachedFile = simDmService.attached_file_create(sessionID, attachedFile);
+```
+
+Now file content should be uploaded to a server temporary storage
+
+```Java
+FileTransferInfo transferInfo = edmAccessControl.createTemporaryFile(sessionId, "name", ".stp", true);
+```
+
+Object **transferInfo** has info about URL to be used as target for POST request.
+
+```Java
+HttpClient client = new HttpClient();
+// URL has not valid symbols. It must be encoded
+String encUploadOrDownloadUrl = encodeUrl(transferInfo.getUploadOrDownloadUrl()) + sessionId;
+
+PostMethod pm = new PostMethod(encUploadOrDownloadUrl);
+File f = new File("path to ULG_Coarse.stp");
+pm.setRequestHeader("Content-Type", "xxx.xxx");
+pm.setRequestHeader("Content-Length", "" + f.length());
+pm.setRequestEntity(new FileRequestEntity(f));
+/* int status = */
+client.executeMethod(pm);
+/* String response = */
+pm.getResponseBodyAsStream();
+```
+
+And final method is to put file from temporary storage to PLM database.
+
+```Java
+V_file fileSpec = ...
+FileTransferInfo transferInfo = ...
+
+fileSpec = simDmService.file_body_set(sessionID, fileSpec.getItem().getInstance_id(), fileSpec.getSize(), transferInfo.getFileNameOnServer());
+```
 
 ### Assign property value
 
