@@ -59,6 +59,7 @@ These two types of services give you access to, among others, the following func
 
 The PLM web client can be directly accessed by the following URL:
 https://caxman.clesgo.net/jotne/STM_web/
+
 In case of direct access (not via workdlow) sign-in is required. The user name is the one you use for the Portal. If you do not have a specific password for the PLM Server, request one by sending an e-mail to caxman@jotne.com .
 
 ### List of models
@@ -200,8 +201,8 @@ The output values are explained in the following table:
 
 | Output | Description |
 | -------------- | ----------- |
-| `selectedFile_base64` | The session token used for authentication. Should be connected to the workflow input with the same name |
-| `status_base64` | the same as sessionToken |
+| `selectedFile_base64` | GSS identifier of a selected file |
+| `status_base64` | file selection status |
 
 # File selection using the PLM web client
 Workflows in CAxMan typically communicate with one of the provided cloud
