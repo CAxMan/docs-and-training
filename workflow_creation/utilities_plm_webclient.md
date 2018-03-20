@@ -2,12 +2,12 @@
 
 ## Introduction
 
-This guide is written for CAxMan application and tools developers to assist them how to use PLM concepts in their workflows.
+This guide is written for CAxMan application and tools developers to assist them how to use PLM concepts in their services and workflows.
 
 ## Why use PLM
 
 PLM provides, in a product-structure-based way, management of system, product and project data. Management of data means, among others, controlled sharing and integration of data as they emerge during a system/product/project life-cycle, and long-term archiving. Such data shall be exposed through a PLM Server to other users. Besides the data themselves, also meta data are made available that describe who created or modified the data, when, how and for what purpose. Also version and configuration data are such meta data.
-The remainder of this document refers to these three types of data, system, product and project data, as just ìproduct dataî.
+The remainder of this document refers to these three types of data, system, product and project data, as just ‚Äúproduct data‚Äù.
 
 ### Configuration control
 
@@ -38,8 +38,8 @@ Data in the PLM Server will represent a rather comprehensive product description
 
 ## Roles of PLM in CAxMan workflows
 
-PLM functionality is available in CAxMan ñ and else ñ as web-services and through a web-client.
-The web-client userís guide is in [User guide PLM client](./utilities_plm_webclient.md#user-guide-plm-client). The PLM web-client can act as a service within a CAxMan workflow to hand-over files to subsequent services. The invocation of the web-client as part of a CAxMan workflow is described in [this document](./utilities_plm_webclient.md#integrating-the-plm-web-client-in-a-workflow).
+PLM functionality is available in CAxMan ‚Äì and else ‚Äì as web-services and through a web-client.
+The web-client user‚Äôs guide is in [User guide PLM client](./utilities_plm_webclient.md#user-guide-plm-client). The PLM web-client can act as a service within a CAxMan workflow to hand-over files to subsequent services. The invocation of the web-client as part of a CAxMan workflow is described in [this document](./utilities_plm_webclient.md#integrating-the-plm-web-client-in-a-workflow).
 
 Access to the PLM Server via web-services is twofold:
 1.	[Via GSS](../service_implementation/advanced_plm.md#gss).
@@ -57,27 +57,22 @@ These two types of services give you access to, among others, the following func
 
 ## User guide PLM client
 
-PLM web client can be directly accessible via following URL:
+The PLM web client can be directly accessed by the following URL:
 https://caxman.clesgo.net/jotne/STM_web/
-
-In case of direct access (not via workdlow) login dialog is shown.
-User will need to provide user name and password.
-User name is equal to one for the portal. And Password is different.
-PLM password is generated for each database user when user is registered.
-If you do not know (do not remember) your password, please ask either Alexey Zorin (Alexey.Zorin@jotne.com) or Jotne support (helpdesk@jotne.com).
+Sign-in is required. The user name is the one you use for the Portal. If you do not have a specific password for the PLM Server, request one by sending an e-mail to caxman@jotne.com .
 
 ### List of models
 
-If PLM web client is launched via workflow, no extra sign-in is required. Workflow passes session token to PLM web client.
-When PLM client starts the list of available repositories and models are presented in the left side panel. An example of available product structures is shown below.
-There is only one repository *InitialRepository* and one single product structure (model) *Ultralight_Glider* in it.
+If the PLM web client is launched from a workflow, no extra sign-in is required. The workflow passes a session token to the PLM web client.
+After havingbeen launched the PLM client presents the list of available repositories and models in the left-hand side panel. An example of available product structures is shown below.
+The example only shows one repository *InitialRepository* and with a single product structure (model) *Ultralight_Glider* in it.
 
 <p align="center">
   <img src="img_plm/repositories_models.png"
    alt="Repositories and models" />
 </p>
 
-Click icon <img src="img_plm/open_icon.png" /> near to the model name of your interest, and a context menu with the single item "Open" will appear.
+Click <img src="img_plm/open_icon.png" /> icon near the model name of your interest, and a context menu with the single item "Open" will appear.
 
 <p align="center">
   <img src="img_plm/model_open.png"
@@ -87,16 +82,16 @@ Click icon <img src="img_plm/open_icon.png" /> near to the model name of your in
 ### Product structure and meta-data
 
 The product structure of a model will be shown on the left side of the web page where repositories and projects were listed before.
-Panel with repositories and models is collapsed to left side. But it can be shown again to switch to other product structure.
+The panel with repositories and models is collapsed to the left; it can be shown again by clicking on the arrow icon (right angular bracket).
 
 <p align="center">
   <img src="img_plm/project_structure_tree.png"
    alt="Project structure. Tree view" />
 </p>
 
-Children nodes are shown (expanded) by clicking plus sign or by clicking on node name.
-Meta-data of a product structure node is opened from the left panel by clicking the <img src="img_plm/open_icon.png" /> icon and selecting "Open" menu item from the context menu. The result is depicted in the following picture.
-By default tab "Files" is selected. And files attached to the selected folder are listed.
+Children nodes are shown (expanded) by clicking on the plus sign or by clicking on the node name.
+Meta-data of a product structure node is opened from the left panel by clicking the <img src="img_plm/open_icon.png" /> icon and selecting the "Open" menu item from the context menu. The result is depicted in the following picture.
+By default, the tab "Files" is selected from the tabs of the right-hand side panel. There files attached to the selected folder are listed.
 
 <p align="center">
   <img src="img_plm/opened_folder.png"
@@ -112,7 +107,7 @@ Product structure folders may have assigned user-defined property values.
 
 ### File upload
 
-Files can be uploaded to a server and attached to a selected folder.
+Files can be uploaded to a server and attached to a folder.
 Click <img src="img_plm/open_icon.png" /> icon of your favorite node and select the "Add file" menu item from the context menu.
 The following form will be shown.
 
@@ -121,30 +116,30 @@ The following form will be shown.
    alt="Form to upload a file" />
 </p>
 
-A file is selected by clicking the "Browse..." button. Select file type from the "Type" drop-down list. The description of the file is mandatory.
-Click "OK" to start upload. After a while the uploaded file will appear in the "Files" tab.
+A file is selected by clicking the "Browse..." button. Select the file type from the "Type" drop-down list. The description of the file is mandatory.
+Click "OK" to start upload. After a while the uploaded file will appear in the "Files" tab of the selected folder.
 
 ### Export ZIP package
 
 The content of a folder and all children below including their documents can be exported as a ZIP package.
-Click <img src="img_plm/open_icon.png" /> icon of a required node and select the "Download" menu item from the context menu.
+Click <img src="img_plm/open_icon.png" /> icon of a node and select the "Download" menu item from the context menu.
 
 ### Add remark
 
 A folder can be commented, that is, a new remark may be added.
-Click   icon of a folder and then select the "Add remark" menu item from the context menu.
+Click <img src="img_plm/open_icon.png" /> icon of a folder and select the "Add remark" menu item from the context menu.
 
 <p align="center">
   <img src="img_plm/add_remark.png"
    alt="Form to add a remark" />
 </p>
 
-Give the subject for your remark and the remark itself. Then click "OK".
+Give the subject of your remark and the remark itself. Then click "OK".
 
 ### Add approval
 
 A folder and all its underlying content can be approved (disapproved) by adding an approval tag to the folder.
-Click <img src="img_plm/open_icon.png" /> icon of a folder and then select the "Add approval" menu item from the context menu.
+Click <img src="img_plm/open_icon.png" /> icon of a folder and select the "Add approval" menu item from the context menu.
 
 <p align="center">
   <img src="img_plm/add_approval.png"
@@ -157,20 +152,20 @@ Then click "OK".
 ### Import folder (ZIP package)
 
 A local folder and all its content (including sub folders) can be imported to a selected node. This, however, requires that the local folder has been zipped first.
-Click <img src="img_plm/open_icon.png" /> icon of a node and then select the "Import folder" menu item from the context menu.
+Click <img src="img_plm/open_icon.png" /> icon of a node and select the "Import folder" menu item from the context menu.
 
 <p align="center">
   <img src="img_plm/import_folder.png"
    alt="Form to import folder" />
 </p>
 
-Select "Folders type" item. All imported folder will be assigned this type.
+Select "Folders type" item. All imported folders will be assigned this type.
 "Files types" may be empty. In this case the system will set the file type (for each file) according to the individual file extension.
 
 ### Delete folder
 
 A folder can be deleted. That is, it can be removed from the product structure.
-Click <img src="img_plm/open_icon.png" /> icon of a node and then select the "Delete" menu item from the context menu.
+Click <img src="img_plm/open_icon.png" /> icon of a node and select the "Delete" menu item from the context menu.
 
 <p align="center">
   <img src="img_plm/delete_confirmation.png"
@@ -201,20 +196,13 @@ The complete set of parameters is explained in the following table:
 | `pageTitle` | yes | Textual caption in web browser |
 | `url` | yes | URL to PLM web client. Normally it is "https://caxman.clesgo.net/jotne/STM_web/" |
 
-The output values are explained in the following table:
-
-| Output | Description |
-| -------------- | ----------- |
-| `selectedFile_base64` | The session token used for authentication. Should be connected to the workflow input with the same name |
-| `status_base64` | the same as sessionToken |
-
 # File selection using the PLM web client
 Workflows in CAxMan typically communicate with one of the provided cloud
-storages. The interactions towards the files themselves are typically handled
+storages, that is, SWIFT or the PLM Server. File interactions are typically handled
 through GSS (Generic Storage Services), but this requires that the services
-already know where a file is stored or, alternatively, which folder it should
-upload a file into. In order to provide a user friendly way to pick files and
-folders that will be used in a workflow, the PLM web client can be used.
+already know where a file shall be stored and which folder it be should
+upload to. In order to provide a user friendly way to pick files and
+folders that will be used in a workflow, the PLM web client may be used.
 
 The PLM web client is meant to be used as a step in
 CAxMan workflows, serving as a GUI towards the PLM storage solution offered
@@ -229,4 +217,4 @@ Click icon <img src="img_plm/open_icon.png" /> near to the file name of your int
    alt="Context menu on files" />
 </p>
 
-When you click "Select File" menu item, PLM web client is closed. Service displayHtml passes GSS identifier of selected file to the next workflow step.
+When you click "Select File" menu item, the PLM web client is closed. The service displayHtml passes the GSS identifier of the selected file to the next workflow step.
