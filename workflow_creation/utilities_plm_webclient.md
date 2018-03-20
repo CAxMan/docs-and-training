@@ -222,4 +222,4 @@ Click icon <img src="img_plm/open_icon.png" /> near to the file name of your int
    alt="Context menu on files" />
 </p>
 
-When you click "Select File" menu item, PLM web client is closed. Service dysplayHtml passes GSS identifier of selected file to the next workflow step.
+When you click "Select File" menu item, PLM web client is closed. Service displayHtml passes GSS identifier of selected file to the next workflow step.
