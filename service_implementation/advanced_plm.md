@@ -290,9 +290,12 @@ long nodeId = pbs.getNodus().getNodes()[0];
 V_node version = simDmService.node_create_version(sessionID, nodeId, "v. 2", true, true, true, true, false, true, false, false, false, null, null, null);
 ```
 
+According to input parameters new folder version will have the same children folders. That is, children folder will be reused among two parent versions.
+New folder version will have copy of all files.
+
 ### Handle files
 
-...
+Folder (version) may have multiple files attached.
 
 ### Assign property value
 
