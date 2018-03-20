@@ -296,4 +296,18 @@ V_node version = simDmService.node_create_version(sessionID, nodeId, "v. 2", tru
 
 ### Assign property value
 
-...
+Folder may have multiple assigned properties, that is, property values may be assigned to a folder.
+There can be only one value of a specific property (definition) assigned to a specific folder.
+
+```Java
+V_property property = ...
+V_node node = ...
+
+V_assigned_property ass = new V_assigned_property();
+ass.setItem(new V_item());
+ass.setDomain(parentNode.getNodus().getItem().getInstance_id());
+ass.setAssignment(property.getItem().getInstance_id());
+ass.setValues(new String[] {"1.23", "3.45", "0.0"}); // vector of three string values. each represents double value
+        
+ass = simDmService.assigned_property_create(sessionID, ass);
+```
