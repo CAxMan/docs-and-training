@@ -372,6 +372,24 @@ client.executeMethod(pm);
 pm.getResponseBodyAsStream();
 ```
 
+where **encodeUrl** can be implemented in the following way
+
+```Java
+String encodeUrl(String url) throws UnsupportedEncodingException {
+   String result = null;
+   Pattern p = Pattern.compile(".*fileName=([^&]+)&.*");
+   Matcher m = p.matcher(url);
+   if (!m.matches()) {
+      // error in regexp
+   } else {
+      String fileName = m.group(1);
+      String encFileName = URLEncoder.encode(fileName, "ASCII");
+      result = url.replace(fileName, encFileName);
+   }
+   return result;
+}
+```
+
 And final method is to put file from temporary storage to PLM database.
 
 ```Java
@@ -379,6 +397,39 @@ V_file fileSpec = ...
 FileTransferInfo transferInfo = ...
 
 fileSpec = simDmService.file_body_set(sessionID, fileSpec.getItem().getInstance_id(), fileSpec.getSize(), transferInfo.getFileNameOnServer());
+```
+
+To download specified file one should be extracted from database to temporary file on server.
+
+```Java
+long instance_id = ...
+V_attached_file attachedFile = simDmService.attached_file_get(sessionID, instance_id);
+// file name and extension for temporary file do not make any sense in this case
+FileTransferInfo transferInfo = edmAccessControl.createTemporaryFile(sessionID, "name", ".ext", false);
+
+simDmService.file_body_get(sessionID, attachedFile.getFile()/* file ID */, transferInfo.getFileNameOnServer());
+```
+
+Then file can be downloaded using POST request.
+```Java
+File file = File.createTempFile("ULG_Coarse", ".stp");
+file.deleteOnExit();
+
+HttpClient client = new HttpClient();
+// URL has not valid symbols. It must be encoded
+String encUploadOrDownloadUrl = encodeUrl(transferInfo.getUploadOrDownloadUrl()) + sessionId;
+
+PostMethod pm = new PostMethod(encUploadOrDownloadUrl);
+/* int status = */client.executeMethod(pm);
+InputStream is = pm.getResponseBodyAsStream();
+OutputStream os = new FileOutputStream(file);
+byte[] buf = new byte[1024];
+int len;
+while ((len = is.read(buf)) > 0) {
+    os.write(buf, 0, len);
+}
+is.close();
+os.close();
 ```
 
 ### Assign property value
