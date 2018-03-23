@@ -10,8 +10,8 @@ GSS covers is small subset of simplified methods (services) of PLM server.
 
 Java (Maven) client: https://github.com/CAxMan/PlmGSS-samples
 
-PLM server is also accessible via GSS implementation by SINTEF.
-Code samples: https://github.com/CAxMan/infrastructureClients/tree/master/gssClients
+PLM server is also accessible via GSS.
+Code samples: https://github.com/CAxMan/infrastructureClients
 
 PLM has some extra methods (SOAP) exposed via GSS
 - *createFolderVersion*
