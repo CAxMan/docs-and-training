@@ -60,7 +60,7 @@ These two types of services give you access to, among others, the following func
 The PLM web client can be directly accessed by the following URL:
 https://caxman.clesgo.net/jotne/STM_web/
 
-In case of direct access (not via workdlow) sign-in is required. The user name is the one you use for the Portal. If you do not have a specific password for the PLM Server, request one by sending an e-mail to caxman@jotne.com .
+In case of direct access (not via workflow) sign-in is required. The user name is the one you use for the Portal. If you do not have a specific password for the PLM Server, request one by sending an e-mail to caxman@jotne.com .
 
 ### List of models
 
