@@ -65,7 +65,7 @@ In case of direct access (not via workflow) sign-in is required. The user name i
 ### List of models
 
 If the PLM web client is launched from a workflow, no extra sign-in is required. The workflow passes a session token to the PLM web client.
-After havingbeen launched the PLM client presents the list of available repositories and models in the left-hand side panel. An example of available product structures is shown below.
+After having been launched the PLM client presents the list of available repositories and models in the left-hand side panel. An example of available product structures is shown below.
 The example only shows one repository *InitialRepository* and with a single product structure (model) *Ultralight_Glider* in it.
 
 <p align="center">
