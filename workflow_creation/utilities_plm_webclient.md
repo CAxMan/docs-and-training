@@ -192,7 +192,7 @@ The complete set of parameters is explained in the following table:
 | Parameter name | Wiring required? | Description |
 | -------------- | --------- | ----------- |
 | `sessionToken` | yes | The session token used for authentication. Should be connected to the workflow input with the same name |
-| `serviceID` | yes | the same as sessionToken |
+| `serviceID` | no | has to be left unconnected |
 | `extraParameters` | yes | Contains parameters such as the GSS location, must be wired to corresponding workflow input. |
 | `pageTitle` | yes | Textual caption in web browser |
 | `url` | yes | URL to PLM web client. Normally it is "https://caxman.clesgo.net/jotne/STM_web/" |
