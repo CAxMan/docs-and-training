@@ -208,8 +208,8 @@ The output values are explained in the following table:
 Workflows in CAxMan typically communicate with one of the provided cloud
 storages, that is, SWIFT or the PLM Server. File interactions are typically handled
 through GSS (Generic Storage Services), but this requires that the services
-already know where a file shall be stored and which folder it be should
-upload to. In order to provide a user friendly way to pick files and
+already know where a file shall be stored and which folder it should be
+uploaded to. In order to provide a user friendly way to pick files and
 folders that will be used in a workflow, the PLM web client may be used.
 
 The PLM web client is meant to be used as a step in
