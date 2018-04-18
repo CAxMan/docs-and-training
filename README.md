@@ -18,6 +18,12 @@ New to the CAxMan project? Read all about its concepts and background here.
   Description and requirements of synchronous services, asynchronous services,
   and applications. Read this if you're wondering what kind of service you 
   need to develop for a certain use case.
+
+* [Accessing cloud storage: Generic Storage Services (GSS)](infrastructure_overview/storage.md):
+  On the CAxMan platform, different cloud storages can be accessed in a
+  simple, unified way. Learn about the basic concepts of the CAxMan
+  Generic Storage Services and the available storage solutions in
+  CAxMan.
   
 * Virtual-machine setup: Currently, each partner developing CAxMan services 
   needs one or more dedicated virtual machines in the Arctur cloud. On the
