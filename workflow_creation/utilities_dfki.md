@@ -207,6 +207,52 @@ To continue the workflow, the external HTML has to perform a SOAP call to the wo
 The javascript variables `WFM`, `ServiceID` and `sessionToken` are accessible from within the iframe and provide the necessary information.
 The address location of the workflow manager is provided through the `WFM` variable, whereas `sessionToken` and `serviceID` have to be passed as arguments to the workflow manager's SOAP function `serviceExecutionFinished`.
 
+Example:
+
+```
+<html><head><title>SOAP request tester</title>
+<link rel="stylesheet" type="text/css" href="https://api.hetcomp.org/portal/twopointo/styles/style.css">
+<script type="text/javascript">
+var objXMLHttpRequest = CreateXMLHttpRequest();
+function CreateXMLHttpRequest() {
+	if (typeof XMLHttpRequest != "undefined") {
+  return new XMLHttpRequest();
+ } else if (typeof ActiveXObject != "undefined") {
+  return new ActiveXObject("Microsoft.XMLHTTP");
+ } else {
+  throw new Error("XMLHttpRequest not supported");
+ }
+}
+function cont_wf() {
+ objXMLHttpRequest.open("POST", parent.WFM, false);
+ objXMLHttpRequest.setRequestHeader("Content-Type", "text/xml");
+ objXMLHttpRequest.setRequestHeader("SOAPAction", "\"\"");
+ var request_body = '<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:wor=\"http://www.eu-cloudflow.eu/dfki/WorkflowManager2/\">' +
+' <soapenv:Header />' +
+' <soapenv:Body>' +
+'  <wor:serviceExecutionFinished>' +
+'   <serviceID>' + parent.serviceID + '</serviceID>' +
+'   <sessionToken>' + parent.sessionToken + '</sessionToken>' +
+'   <xmlOutputs_base64>PFNlcnZpY2VPdXRwdXRzPjxzdGF0dXNfYmFzZTY0PmRYTmxjaUJqYjI1MGFXNTFaV1E9PC9zdGF0dXNfYmFzZTY0PjwvU2VydmljZU91dHB1dHM+</xmlOutputs_base64>' +
+'  </wor:serviceExecutionFinished>' +
+' </soapenv:Body>' +
+'</soapenv:Envelope>';
+	try {
+  objXMLHttpRequest.send(request_body);
+ } catch (exception) {
+  alert(exception);
+ }
+}
+</script></head><body>
+<div style="padding:30px;">
+<h2>This is a SOAP test.</h2>
+<p style="width:400px;">Please click to continue</p><br />
+<input type="button" value="Send 'finishedExecution'" onclick="cont_wf()" />
+</div></body></html>
+
+
+```
+
 ### Inputs
 | Parameter name | Description |
 --- | :--- |
