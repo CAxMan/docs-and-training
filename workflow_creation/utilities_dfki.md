@@ -10,6 +10,8 @@ To request text input from the user, one can make use of the [StringInput](#stri
 Some of the services presented below return a parameter "status_base64". Usually, this output does not need to be connected to the remaining workflow as it merely appears for technical reasons.
 The input "sessionToken" has to be connected to the respective workflow input and is mandatory. The input "serviceID" is also mandatory but will automatically provided by the execution engine, therefore it does not need to be connected.
 
+---
+
 ## Continue
 
 Service URI: `http://www.caxman.eu/apps/dfki/showCustomDecisionHtml.owl#showCustomDecisionHtml_Service`
@@ -41,6 +43,8 @@ Optionally, a link can be displayed to redirect the user to an external location
 --- | :--- |
 | `status_base64` | Base64-encoded HTML page with continue button |
 
+
+---
 ## Decision
 
 Service URI: `http://www.caxman.eu/apps/dfki/showDecisionHtml.owl#showDecisionHtml_Service`
@@ -72,6 +76,7 @@ Optionally, a link can be displayed to redirect the user to an external location
 | `status_base64` | Base64-encoded HTML page with two buttons |
 | `decision` | The coice of the user, either `true` or `false` | 
 
+---
 ## Custom_Decision
 
 Service URI: `http://www.caxman.eu/apps/dfki/showCustomDecisionHtml.owl#showCustomDecisionHtml_Service`
@@ -105,6 +110,7 @@ Optionally, a link can be displayed to redirect the user to an external location
 | `status_base64` | Base64-encoded HTML page with two buttons |
 | `decision` | The coice of the user, either `true` or `false` | 
 
+---
 ## ShowHtml
 
 ### Example
@@ -135,6 +141,7 @@ Optionally, a link can be displayed to redirect the user to an external location
 --- | :--- |
 | `status_base64` | Base64-encoded HTML page displaying the provided HTML code and a button to continue the workflow |
 
+---
 ## StringInput
 
 Service URI: `http://www.caxman.eu/apps/dfki/StringInput.owl#showStringInputHtml_Service`
@@ -162,6 +169,7 @@ To submit the input and to continue the workflow the user has to click on the "O
 | `status_base64` | Base64-encoded HTML page with an input field |
 | `userString` | The string provided by the user through the input field | 
 
+---
 ## UniqueString
 
 Service URI: `http://www.caxman.eu/apps/dfki/uniqueString.owl#uniqueString_Service`
@@ -188,6 +196,7 @@ Given a prefix string and a number this service returns a concatenation of those
 Remark: If either the prefix or the number input are not provided the respective part of the output string will be left empty, for example:
 `test--1523950990924`
 
+---
 ## IFrameDisplay
 
 Service URI: `http://www.caxman.eu/apps/dfki/IframeDisplay.owl#displayHtml_Service`
@@ -213,6 +222,7 @@ The address location of the workflow manager is provided through the `WFM` varia
 --- | :--- |
 | `status_base64` | Base64-encoded HTML page with an iframe embedding the defined HTML page |
 
+---
 ## EndIfService
 
 Service URI: `http://www.caxman.eu/sync/DFKI/EndIf.owl#EndIf_Service`
