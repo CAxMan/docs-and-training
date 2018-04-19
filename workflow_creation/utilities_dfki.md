@@ -22,7 +22,7 @@ Optionally, a link can be displayed to redirect the user to an external location
 
 ### Example
 
-![continue.PNG](img_utilities_dfki/continue.PNG)
+![continue.png](img_utilities_dfki/continue.png)
 
 ### Inputs
 
@@ -51,7 +51,7 @@ Optionally, a link can be displayed to redirect the user to an external location
 
 ### Example
 
-![decision.PNG](img_utilities_dfki/decision.PNG)
+![decision.png](img_utilities_dfki/decision.png)
 
 ### Inputs
 | Parameter name | Description |
@@ -83,7 +83,7 @@ Optionally, a link can be displayed to redirect the user to an external location
 
 ### Example
 
-![custom_decision.PNG](img_utilities_dfki/custom_decision.PNG)
+![custom_decision.png](img_utilities_dfki/custom_decision.png)
 
 ### Inputs
 | Parameter name | Description |
@@ -109,7 +109,7 @@ Optionally, a link can be displayed to redirect the user to an external location
 
 ### Example
 
-![show_html.PNG](img_utilities_dfki/show_html.PNG)
+![show_html.png](img_utilities_dfki/show_html.png)
 
 Service URI: `http://www.caxman.eu/apps/dfki/showHtml.owl#showHtml_Service`
 
@@ -145,7 +145,7 @@ To submit the input and to continue the workflow the user has to click on the "O
 
 ### Example
 
-![string_input.PNG](img_utilities_dfki/string_input.PNG)
+![string_input.png](img_utilities_dfki/string_input.png)
 
 ### Inputs
 | Parameter name | Description |

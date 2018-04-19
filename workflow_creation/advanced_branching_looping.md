@@ -25,7 +25,7 @@ Perform a simple case distinction and execute different services depending on th
 
 ### Steps:
 
-![wfe_1.PNG](img_workflows/wfe_1.PNG)
+![wfe_1.png](img_workflows/wfe_1.png)
 
 - In the "Workflow Editor"-UI below the "Service URI"-field click on "append if tags" to add the basic syntax to your workflow
 
@@ -77,7 +77,7 @@ If you need to execute a service multiple time, you can make use of the loop fea
 
 ### Steps:
 
-![wfe_1.PNG](img_workflows/wfe_1.PNG)
+![wfe_1.png](img_workflows/wfe_1.png)
 
 - In the "Workflow Editor"-UI below the "Service URI"-field click on "append loop tags" to add the basic syntax to your workflow.
 

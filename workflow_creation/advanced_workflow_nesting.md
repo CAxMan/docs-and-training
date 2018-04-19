@@ -8,4 +8,4 @@ To add a workflow as a service to your current workflow, just select it from the
 
 Remark: To add additional inputs and outputs to your workflow, you can use the "i" and "o" buttons below the "Service URI"-field.
 
-![wfe_1.PNG](img_workflows/wfe_1.PNG)
+![wfe_1.png](img_workflows/wfe_1.png)
