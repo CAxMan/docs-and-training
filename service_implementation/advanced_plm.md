@@ -40,6 +40,8 @@ Parameters:
 - **session_id** - Keystone authentication token
 Returns: **ResourceInformation** object for each file version
 
+Note that the above methods can technically accept any kind of GSS URI (which is represented as a mere string in CAxMan), but the methods will obviously fail when non-PLM URIs are provided.
+
 The following two methods can be used to switch between PLM-specific GSS URIs and PLM native id.
 PLM-specific GSS URIs look like the following.
 "plm://TestRepository/MyModel123/1234567890"
