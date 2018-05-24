@@ -1,6 +1,6 @@
 # Advanced workflow creation: Nesting workflows
 
-Workflows can also be used as services within other workflows, which can ease the creation of more sophisticated workflows, as thereby complex workflows can be divided into different tool-chains or sub-workflow.
+Workflows can also be used as services within other workflows, which can ease the creation of more sophisticated workflows, as thereby complex workflows can be divided into different tool-chains or sub-workflows.
 
 Nesting workflows allows you to re-use commonly used tool-chains without re-creating them everytime you need them. This additionally implies that whenever you need to update your tool-chain, you only need to perform those changes in one place.
 

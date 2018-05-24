@@ -17,6 +17,14 @@ Both features support a simple condition scheme, denoted in xml, which enables i
 
 The COMMAND may one of the following: `greaterThan`, `greaterOrEqual`, `equalTo`, `lessThan`, `lessOrEqual`.
 The condition will compare the value of the VARIABLE with VALUE based on the COMMAND.
+Here, the variable may by one of the following:
+
+- the ID of an input or output, e.g. ``main_input2`` of the following input: ``<input ID="main_input2" URI="http://www.caxman.eu/apps/dfki/IframeDisplay.owl#extraParameters"/>``
+- the fragment of a URI, e.g. ``extraParameters`` of the following input: ``<input ID="main_input2" URI="http://www.caxman.eu/apps/dfki/IframeDisplay.owl#extraParameters"/>``
+
+Additionally, both features require the use of the __textual editor__ to integrate the services correctly into the modified workflow. To open the textual editor you need to click on the "+" before __Textual Workflow Editor__.
+
+![wfe_2.png](img_workflows/wfe_2.png)
 
 
 ## Branching
@@ -29,7 +37,7 @@ Perform a simple case distinction and execute different services depending on th
 
 - In the "Workflow Editor"-UI below the "Service URI"-field click on "append if tags" to add the basic syntax to your workflow
 
-```
+```xml
 <workflow URI="">
   <output URI="#out1" ID=""/>
   <input URI="#sessionToken" ID="sessionToken"/>
@@ -81,7 +89,7 @@ If you need to execute a service multiple time, you can make use of the loop fea
 
 - In the "Workflow Editor"-UI below the "Service URI"-field click on "append loop tags" to add the basic syntax to your workflow.
 
-```
+```xml
 <workflow URI="">
   <output URI="#out1" ID=""/>
   <input URI="#sessionToken" ID="sessionToken"/>

@@ -8,7 +8,7 @@ To request text input from the user, one can make use of the [StringInput](#stri
 
 
 Some of the services presented below return a parameter "status_base64". Usually, this output does not need to be connected to the remaining workflow as it merely appears for technical reasons.
-The input "sessionToken" has to be connected to the respective workflow input and is mandatory. The input "serviceID" is also mandatory but will automatically provided by the execution engine, therefore it does not need to be connected.
+The input "sessionToken" has to be connected to the respective workflow input and is mandatory. The input "serviceID" is also mandatory but will automatically be provided by the execution engine, therefore it does not need to be connected.
 
 ---
 
@@ -30,8 +30,8 @@ Optionally, a link can be displayed to redirect the user to an external location
 
 | Parameter name | Description |
 --- | :--- |
-| `session token` | Session token to be used throughout the workflow |
-| `service ID` | The ID assigned to this service by the executione engine, provided automatically |
+| `sessionToken` | Session token to be used throughout the workflow |
+| `serviceID` | The ID assigned to this service by the executione engine, provided automatically |
 | `message` | The message to be presented to the user |
 | `heading` | The title of the message |
 | `linkLabel` | The title of the optional link |
@@ -60,8 +60,8 @@ Optionally, a link can be displayed to redirect the user to an external location
 ### Inputs
 | Parameter name | Description |
 --- | :--- |
-| `session token` | Session token to be used throughout the workflow |
-| `service ID` | The ID assigned to this service by the executione engine, provided automatically |
+| `sessionToken` | Session token to be used throughout the workflow |
+| `serviceID` | The ID assigned to this service by the executione engine, provided automatically |
 | `message` | The message to be presented to the user |
 | `heading` | The title of the message |
 | `linkLabel` | The title of the optional link |
@@ -93,8 +93,8 @@ Optionally, a link can be displayed to redirect the user to an external location
 ### Inputs
 | Parameter name | Description |
 --- | :--- |
-| `session token` | Session token to be used throughout the workflow |
-| `service ID` |  The ID assigned to this service by the executione engine, provided automatically |
+| `sessionToken` | Session token to be used throughout the workflow |
+| `serviceID` |  The ID assigned to this service by the executione engine, provided automatically |
 | `message_base64` | The base64-encoded message to be presented to the user |
 | `heading` | The title of the message |
 | `linkLabel` | The title of the optional link |
@@ -128,11 +128,11 @@ Optionally, a link can be displayed to redirect the user to an external location
 ### Inputs
 | Parameter name | Description |
 --- | :--- |
-| `session token` | Session token to be used throughout the workflow |
-| `service ID` | The ID assigned to this service by the executione engine, provided automatically |
+| `sessionToken` | Session token to be used throughout the workflow |
+| `serviceID` | The ID assigned to this service by the executione engine, provided automatically |
 | `pageBody_base64` | Base64-encoded HTML body to be displayed to the user |
 | `nextButtonLabel` | Label of the button which continues the workflow |
-| `nextDescriptionLabel` | Additional message, displayed above the button which continues the workflow |
+| `nextDescription` | Additional message, displayed above the button which continues the workflow |
 | `extraParameters` | Needs to be connected to the "extraParameters" workflow input |
 
 
@@ -157,8 +157,8 @@ To submit the input and to continue the workflow the user has to click on the "O
 ### Inputs
 | Parameter name | Description |
 --- | :--- |
-| `session token` | Session token to be used throughout the workflow |
-| `service ID` | The ID assigned to this service by the executione engine, provided automatically |
+| `sessionToken` | Session token to be used throughout the workflow |
+| `serviceID` | The ID assigned to this service by the executione engine, provided automatically |
 | `message` | Message to be presented above the input field |
 | `heading` | Title of the web page |
 | `extraParameters` | Needs to be connected to the "extraParameters" workflow input |
@@ -207,9 +207,9 @@ To continue the workflow, the external HTML has to perform a SOAP call to the wo
 The javascript variables `WFM`, `ServiceID` and `sessionToken` are accessible from within the iframe and provide the necessary information.
 The address location of the workflow manager is provided through the `WFM` variable, whereas `sessionToken` and `serviceID` have to be passed as arguments to the workflow manager's SOAP function `serviceExecutionFinished`.
 
-Example:
+Code snippet of such an externally hosted HTML:
 
-```
+```html
 <html><head><title>SOAP request tester</title>
 <link rel="stylesheet" type="text/css" href="https://api.hetcomp.org/portal/twopointo/styles/style.css">
 <script type="text/javascript">
@@ -249,8 +249,6 @@ function cont_wf() {
 <p style="width:400px;">Please click to continue</p><br />
 <input type="button" value="Send 'finishedExecution'" onclick="cont_wf()" />
 </div></body></html>
-
-
 ```
 
 ### Inputs
