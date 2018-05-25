@@ -254,8 +254,8 @@ function cont_wf() {
 ### Inputs
 | Parameter name | Description |
 --- | :--- |
-| `session token` | Session token to be used throughout the workflow |
-| `service ID` | The ID assigned to this service by the executione engine, provided automatically |
+| `sessionToken` | Session token to be used throughout the workflow |
+| `serviceID` | The ID assigned to this service by the executione engine, provided automatically |
 | `pageTitle` | Not yet used |
 | `url` | URL to be queried for web content |
 | `extraParameters` | Needs to be connected to the "extraParameters" workflow input |
