@@ -88,6 +88,9 @@ the graphical tools provided on the portal).
     In practice, one most likely wants to hide the interplay of SOAP and REST
     calls when accessing GSS behind some kind of library. This article gives
     an overview over existing libraries and their usage.
+  * [Beyond files: Using PLM for versioning and metadata](service_implementation/advanced_plm.md):
+    Sometimes simple files just don't cut it. PLM offers versioning, metadata,
+    and much more. Find out how to interface with PLM in your services.
     
 
 * [Using the HPC service: pre- and post-processor services](service_implementation/basics_HPC_service.md):
@@ -99,10 +102,6 @@ the graphical tools provided on the portal).
 * [Error handling in SOAP services](service_implementation/advanced_error_handling.md):
   Explains how to gracefully handle errors inside SOAP services such that the
   outside world can process them.
-
-* [Beyond files: Using PLM for versioning and metadata](service_implementation/advanced_plm.md):
-  Sometimes simple files just don't cut it. PLM offers versioning, metadata,
-  and much more. Find out how to interface with PLM in your services.
 
 * [Using authentication services inside a service](service_implementation/advanced_authentication.md):
   When a service is executed inside a workflow, the portal takes care that

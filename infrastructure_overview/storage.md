@@ -53,7 +53,9 @@ interacting with the GSS service.
 In CAxMan, two storage backends are available. The first is OpenStack SWIFT, a
 simple hierarchical object storage. The other is Jotne PLM, which offers much
 more functionality beyond just files and folders. See the [dedicated PLM
-documentation](../service_implementation/advanced_plm.md) for details.
+documentation](../service_implementation/advanced_plm.md) for details. Note that
+for any except testing purposes, usage of the PLM storage solution is preferred
+over SWIFT.
 
 The storage backends are available under the following GSS URI schemes:
 * `swift://<container>/<location>`: SWIFT storage
