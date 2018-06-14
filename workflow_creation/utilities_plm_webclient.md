@@ -120,6 +120,183 @@ The following form will be shown.
 A file is selected by clicking the "Browse..." button. Select the file type from the "Type" drop-down list. The description of the file is mandatory.
 Click "OK" to start upload. After a while the uploaded file will appear in the "Files" tab of the selected folder.
 
+### Engineering queries
+
+STEP files normally have context menu item "Engineering queries".
+
+Click <img src="img_plm/open_icon.png" /> icon of your favorite STEP file and select the "Engineering queries" menu item from the context menu.
+The following form will be shown.
+
+<p align="center">
+  <img src="img_plm/engineering_queries.png"
+   alt="Engineering queries" />
+</p>
+
+The following form will be shown.
+
+<p align="center">
+  <img src="img_plm/engineering_queries_panel.png"
+   alt="Engineering queries panel" />
+</p>
+
+The following queries are included in this release. A query can be selected from "Query" drop-down list.
+
+#### Model Query
+
+This query returns information about FEA models. The query key is the fea_model ID.  
+
+The information displayed for each model is:
+- Total number of nodes, total number of coordinate systems, total number of each type of element and total number of elements. 
+- Total number of control load cases 
+- For each control load case: Total number of constraints and applied loads differentiated on variable type (pressure, etc.) 
+- For each result load case indicate the existence of: 
+  - Deflections
+  - Stresses 
+  - Strains 
+  - Element Forces 
+
+#### Node Query
+
+This query returns information about the nodes that you specify in the input field. The query returns a table with one row per node. The table has the following columns:
+- Node ID:  the id of the node.
+- Node type:  the subclass of node.  Either Node, Dummy Node, Geometric Node.
+- Coordinate system ID:  the ID of the coordinate system used to found the node (see clause 5.6.2 of 10303-104 for more details).
+- Coordinate System Type:  Either Cartesian, Cylindrical, or Spherical.
+- Coord1, Coord2, Coord3:  The coordinates in point subtype that specifies the position of the node. 
+
+#### Element Query
+
+This query returns information about the elements that you specify in the input field. The query returns a table with one row per element. The table has the following columns:
+- Element_ID – the id of the element
+- Type – “Volume_3D”, “Volume_2D”, “Curve_3D”, ..etc.
+- Order – For those element types where topology order is relevant: “Linear”, “Quadratic” or “Cubic”.
+- Shape – For “Volume_3D” elements this column can be either "Hexahedron", "Wedge", "Tetrahedron" or "Pyramid". For "Volume_2D" or "Surface_3D" elements the column cn be either "Quadrilateral" or "Triangle".
+- Property_ID – ID of the property information of the element.
+- Material_ID – The id of the element material. It is also a link to the query displaying this information.
+- Node_List – The node IDs of the nodes attached to the element. It is also a link to the node query displaying information about these nodes.
+
+#### Curve Element Property Query
+
+This query returns information about the curve element properties the IDs of which are specified in the “Curve Element Property ID(s)” input field.  The information displayed is:
+- Description
+- Cross_sectional_area
+- Shear area
+- Second moment of area
+- Torsional constant
+- Warping constant
+- Location of Centroid
+- Location of shear centre
+- Location of non structural mass
+- Non structural mass
+- Polar moment
+
+In addition information about End Offsets and End Releases is displayed.
+
+#### Surface Element Property Query
+
+This query returns information about the surface element properties the IDs of which are specified in the “Surface Element Property ID(s)” input field.  The information displayed is:
+- Property_ID
+- Offset
+- Non_structural_mass
+- Non_structural_mass_offset
+- Thickness
+- Bending_thickness
+- Shear_thickness
+
+#### Point Element Property Query
+
+This query returns information about the point element properties the IDs of which are specified in the “Point Element Property ID(s)” input field.  The information displayed is:
+- Element_ID
+- Matrix_Type
+- Mass Matrix
+- Moments of Inertia
+- CoordSys_ID
+- Offset Vector
+
+#### Directionally explicit Element Property Query
+This query returns information about the directionally explicit element properties the IDs of which are specified in the “Directionally explicit Element Property ID(s)” input field.  The information displayed is:
+- Property ID
+- Coordinate System ID
+- Freedom
+- Coefficient
+
+This query is not implemented, yet.
+
+#### Material Property Query
+
+This query returns information about materials the IDs of which are specified in the “Material ID(s)” input field.  The information displayed is:
+- Material_ID
+- Material_Type(s)
+- Linear elasticity
+- Mass density
+- Tangential coefficient of linear thermal expansion
+
+#### Constraint Element Query
+
+This query returns information about constraints on load cases. The constraints are specified by constraint id in the “Constrrant ID(s)” input field, and the load cases are specified by selecting load case id(s) in the field “Load Case ID(s)”.
+For single point constraints the information displayed is:
+- Constraint_ID
+- Load Case_ID
+- Node_ID
+- CoordSys_ID
+- Freedom_Values - (typically x_translation,  y_translation, z_translation, x_rotation, y_rotation, z_rotation)
+
+#### Applied Load Query
+
+This query returns information about applied loads on nodes in load cases. The nodes are specified by node id in the “Node ID(s)” input field, and the load cases are specified by selecting load case id(s) in the field “Load Case ID(s)”. The information displayed is:
+- Load_Case_ID
+- Node_ID
+- CoordSys_ID
+- Load Type
+- Freedom_Values - (typically x_translation,  y_translation, z_translation, x_rotation, y_rotation, z_rotation)
+
+#### Displacement Query
+
+This query returns information about displacements of nodes in load cases. The nodes are specified by node id in the “Node ID(s)” input field, and the load cases are specified by selecting load case id(s) in the field “Load Case ID(s)”. The information displayed is:
+- Load_Case_ID
+- Node_ID
+- CoordSys_ID
+- Freedom_Values - x_translation, y_translation, z_translation, x_rotation, y_rotation and z_rotation
+
+#### Stress and Strain Query
+
+This query returns information about stress and strain of elements in load cases. The elements are specified by element id in the “Element ID(s)” input field, and the load cases are specified by selecting load case id(s) in the field “Load Case ID(s)”. The information displayed is:
+- Load_Case_ID
+- Element_ID
+- Variable – Either stress or strain
+- CoordSys_ID
+- Locations
+- Values – if variable is stress: σ11, σ12, σ13, σ22, σ23, σ33 and if variable is strain: ε11, ε12, ε13, ε22, ε23, ε33.
+
+#### Element Forces from Node Force Balance Query
+
+The query keys are Element ID and Load Case ID.  The information displayed is a table with the following columns: 
+- Element ID
+- Node ID
+- Load Case ID
+- Coordinate System
+- Degree of Freedom.
+
+The table will have one row for each node of each specified load case and each specified element.
+
+#### Displacement Survey
+
+The query keys are Node ID and Load Case ID range, and a selection of maximum or minimum.  
+For each node the survey reports the maximum or minimum displacement vector value in each component direction (x, y, z, rx, ry, rz) and resultant displacement value (sqrt(x*x+y*y+z*z)) for a single or range of node IDs, for a range of load cases.  
+For each node, the information displayed is the same as for the Displacement Query, but repeated seven times for the node, once for each component of the displacement vector, and once for the resultant.  Each repeated displacement vector component output line shall have the component that is the maximum or minimum underlined, and the corresponding Load Case ID output in the Load Case ID column.
+
+#### Stress or Strain Survey
+
+The query keys are Element ID and Load Case ID range, and a selection of maximum or minimum.  
+For each element the survey reports the maximum or minimum stress or strain tensor value appropriate for the element type, the principle stress, and the Von Mises stress for a single or range of element IDs, for a range of load cases. 
+For each element, the information displayed is the same as for the Stress or Strain Query, repeated as many times as there are components in the stress or strain tensor for that type of element.  Each repeated stress or strain tensor component output has the maximum or minimum component underlined, and the corresponding Load Case ID output in the Load Case ID column.
+
+#### Element Forces from Node Force Balance Survey
+
+The query keys are Element ID and Load Case ID range, and a selection of maximum or minimum.  
+For each element the survey reports, for each node in the element, the maximum or minimum force vector component in each component direction (x, y, z, rx, ry, rz) and the resultant translational load value (sqrt(x*x+y*y+z*z)), for a single or range of element IDs, for a range of load cases. 
+For each element, the information displayed is the same as for the Element Forces from Node Force Balance Query, repeated for each of the component directions and the resultant, repeated for each of the nodes in that type of element.  Each repeated force vector component output has the maximum or minimum component underlined, and the corresponding Load Case ID output in the Load Case ID column.
+
 ### Export ZIP package
 
 The content of a folder and all children below including their documents can be exported as a ZIP package.
