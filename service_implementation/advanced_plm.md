@@ -21,12 +21,14 @@ The PLM-only GSS extension comprises the following SOAP methods:
 - *listFileVersions*
 - *plm2gss*
 - *gss2plm*
+- *getFileVersion*
+- *getHostingFolder*
 
 **createFolderVersion** - creates a new version of the specified folder. Children folders of the existing selected version are reused; files are copied.
 Parameters:
 - **folderID** - GSS folder id of the folder to create the new version from. Example: plm://InitialRepository/Ultralight_Glider/236223201541
 - **session_id** - Keystone authentication token
-Returns: **ResourceInformation** object with GSS folder ID of the newly created folder version
+Returns: GSS folder ID of the newly created folder version
 
 **listFolderVersions** - lists all versions of the specified folder including the one specified.
 Parameters:
@@ -68,6 +70,19 @@ PlmResource plmId = srv.gss2Plm("plm://TestRepository/MyModel123/1234567890", ke
 String wsdl = plmId.getWsdlUrl();
 String serviceUrl = plmId.getServiceUrl();
 ```
+
+**getFileVersion** - can be used to retrieve file version, that is, file in a different folder with the same name.
+Parameters:
+- **folderID** - GSS id of the new (just created) folder (version). Example: plm://InitialRepository/Ultralight_Glider/236223201541
+- **oldFileID** GSS id of a file in previous folder version
+- **session_id** - Keystone authentication token
+Returns: GSS id of a file version in the given (*folderID*) folder
+
+**getHostingFolder** - can be used to retrieve GSS id of a hosting folder by given GSS file id.
+Parameters:
+- **fileId** - GSS id of a file. Example: plm://InitialRepository/Ultralight_Glider/236223201541
+- **session_id** - Keystone authentication token
+Returns: GSS id of a folder where specified file is located.
 
 ## PLM API through native services (SOAP)
 
