@@ -6,6 +6,8 @@ The [Continue](#continue) and [ShowHtml](#showhtml) services may be used to disp
 The [Decision](#decision) and [Custom_Decision](#custom_decision) services can be used to interact via a simple Yes/No-form with the user.
 To request text input from the user, one can make use of the [StringInput](#stringinput) service. If you ever need a unique input, have a look at the [UniqueString](#uniquestring) service.
 
+To notify the person who executes a workflow, you can make use of the [Email](#email) service.
+
 
 Some of the services presented below return a parameter "status_base64". Usually, this output does not need to be connected to the remaining workflow as it merely appears for technical reasons.
 The input "sessionToken" has to be connected to the respective workflow input and is mandatory. The input "serviceID" is also mandatory but will automatically be provided by the execution engine, therefore it does not need to be connected.
@@ -267,6 +269,29 @@ function cont_wf() {
 | `status_base64` | Base64-encoded HTML page with an iframe embedding the defined HTML page |
 
 ---
+
+## Email
+
+Service URI: `https://caxman.clesgo.net/dfki/tomcat/EmailServices/services/EmailServices?wsdl`
+
+This service can be used to send an email to the person who executes the workflow, during workflow execution, for example, to notify the person that a certain point in the workflow has been reached.
+
+### Inputs
+| Parameter name | Description |
+--- | :--- |
+| `priority` | Email priority (FATAL, ERROR, WARN, INFO, DEBUG) |
+| `sessionToken` | Session token to identify the user who needs to be informed |
+| `subject` | Email subject |
+| `content` | Email content |
+
+### Outputs
+| Parameter name  | Description |
+--- | :--- |
+| `success` | Whether the mail was sent successfully |
+| `message` | Additional information regarding the status of the email | 
+
+---
+
 ## EndIfService
 
 Service URI: `http://www.caxman.eu/sync/DFKI/EndIf.owl#EndIf_Service`
