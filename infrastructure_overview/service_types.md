@@ -79,7 +79,7 @@ The `extraParameters` provide the addresses of some infrastructure components, f
 
 | Parameter name | Optional | Description |
 --- | --- | :--- |
-| `sessionToken` | yes | Session token to be used throughout the workflow |
+| `sessionToken` | no | Session token to be used throughout the workflow |
 | `serviceID` | yes | The ID assigned to this service by the executione engine, provided automatically |
 | `extraParameters` | yes | Needs to be connected to the "extraParameters" workflow input |
 | ... |  | |
@@ -131,8 +131,8 @@ This method will be called to invoke your service.
 
 | Parameter name | Optional | Description |
 --- | --- | :--- |
-| `sessionToken` | yes | Session token to be used throughout the workflow |
-| `serviceID` | yes | The ID assigned to this service by the execution engine, provided automatically |
+| `sessionToken` | no | Session token to be used throughout the workflow |
+| `serviceID` | no | The ID assigned to this service by the execution engine, provided automatically |
 | `extraParameters` | yes | Needs to be connected to the "extraParameters" workflow input |
 | ... |  | |
 | `your parameters` | no | |
@@ -250,9 +250,9 @@ This method will be called to invoke your service.
 
 | Parameter name | Optional | Description |
 --- | --- | :--- |
-| `sessionToken` | yes | Session token to be used throughout the workflow |
-| `serviceID` | yes | The ID assigned to this service by the execution engine, provided automatically |
-| `extraParameters` | yes | Needs to be connected to the "extraParameters" workflow input |
+| `sessionToken` | no | Session token to be used throughout the workflow |
+| `serviceID` | no | The ID assigned to this service by the execution engine, provided automatically |
+| `extraParameters` | no | Needs to be connected to the "extraParameters" workflow input |
 | ... |  | |
 | `your parameters` | no | |
 
@@ -282,11 +282,13 @@ The name of the upper level tag (here, `ServiceOutputs`) may be arbitrary.
 
 | Parameter name | Optional | Description |
 --- | --- | :--- |
+| `sessionToken` | no | Session token to be used throughout the workflow |
+| `serviceID` | no | The ID assigned to this service by the execution engine, provided automatically |
 | `xmlOutputs_base64` | no | Base64-encoded result parameters of your service |
 
 
 The parameters provided through the parameter `xmlOutputs_base64` have to be identical to the ones of the
-`startServce` method, including `status_base64`.
+`startService` method, including `status_base64`.
 
 ##### Outputs
 
