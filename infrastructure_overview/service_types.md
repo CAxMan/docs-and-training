@@ -260,7 +260,7 @@ This method will be called to invoke your service.
 
 | Parameter name  | Optional | Description |
 --- | --- | :--- |
-| `status_base64` |  no | The status of your workflow (`COMPLETED`, `UNCHANGED`, or a base64-encoded string) |
+| `status_base64` |  no | The status of your workflow (a base64-encoded string) |
 | ... |  | |
 | `your parameters` | no | |
 
